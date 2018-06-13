@@ -31,7 +31,7 @@ public class Info {
             //System.out.println("Current IP address : " + ip.getHostAddress());
 
         } catch (SigarException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         CpuInfo info = infos[0];
         OperatingSystem sys = OperatingSystem.getInstance();
@@ -48,7 +48,7 @@ public class Info {
         Datos.put("RAMU",String.valueOf((memoria.getUsed()) / 1024 / 1000));
         Datos.put("IP",(IPA));
         Datos.put("MAC",Mac());
-        System.out.println(Datos);
+        //System.out.println(Datos);
         return Datos;
     }
 
@@ -58,13 +58,13 @@ public class Info {
         try {
 
             ip = InetAddress.getLocalHost();
-            System.out.println("Current IP address : " + ip.getHostAddress());
+            //System.out.println("Current IP address : " + ip.getHostAddress());
 
             NetworkInterface network = NetworkInterface.getByInetAddress(ip);
 
             byte[] mac = network.getHardwareAddress();
 
-            System.out.print("Current MAC address : ");
+            System.out.print("Mi MAC address : ");
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < mac.length; i++) {
