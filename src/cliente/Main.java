@@ -1,10 +1,9 @@
 package cliente;
 
-public class cliente  {
+public class Main  {
     public static void main(String[] args) throws Exception {
         Panel MiPanel = new Panel();
-        Server MiServer = new Server(MiPanel);
+        Control MiServer = new Control(MiPanel);
         MiPanel.conectaControlador(MiServer);
     }
-
 }

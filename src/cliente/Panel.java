@@ -18,16 +18,18 @@ public class Panel extends JFrame {
     protected JLabel Servidor;
     protected JLabel SLIP;
     protected JLabel SLPuerto;
-    protected JButton SBtnDesconectar;
-    protected JButton SBtnConectar;
+    protected JButton SBtnApagar;
+    protected JButton SBtnEncender;
+    
     protected JTextField STIP;
     protected JTextField STPuerto;
+    
     protected JLabel SMSJ;
     
     GridBagConstraints cons = new GridBagConstraints();
 
     public Panel() {
-        setBounds(100, 100, 400, 600);//Definir las dimensiones de la ventana
+        setBounds(100, 100, 400, 400);//Definir las dimensiones de la ventana
         setTitle("Conexion");    //Barra de título
         setDefaultCloseOperation(EXIT_ON_CLOSE);    //Acción al pulsar salir
         getContentPane().setLayout(new GridBagLayout());
@@ -121,12 +123,12 @@ public class Panel extends JFrame {
         cons.gridheight = 1;
         getContentPane().add(Servidor, cons);
         
-        SLIP = new JLabel("IP:");
+        /*SLIP = new JLabel("IP:");
         cons.gridx = 0;
         cons.gridy = 7;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(SLIP, cons);
+        getContentPane().add(SLIP, cons);*/
         
         SLPuerto = new JLabel("Puerto:");
         cons.gridx = 0;
@@ -135,12 +137,12 @@ public class Panel extends JFrame {
         cons.gridheight = 1;
         getContentPane().add(SLPuerto, cons);
         
-        STIP = new JTextField("127.0.0.1");
+        /*STIP = new JTextField("127.0.0.1");
         cons.gridx = 1;
         cons.gridy = 7;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(STIP, cons);
+        getContentPane().add(STIP, cons);*/
         
         STPuerto = new JTextField("5430");
         cons.gridx = 1;
@@ -149,19 +151,19 @@ public class Panel extends JFrame {
         cons.gridheight = 1;
         getContentPane().add(STPuerto, cons);
         
-        SBtnConectar = new JButton("Encender");
+        SBtnEncender = new JButton("Encender");
         cons.gridx = 0;
         cons.gridy = 10;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(SBtnConectar, cons);
+        getContentPane().add(SBtnEncender, cons);
         
-        SBtnDesconectar = new JButton("Apagar");
+        SBtnApagar = new JButton("Apagar");
         cons.gridx = 1;
         cons.gridy = 10;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(SBtnDesconectar, cons);
+        getContentPane().add(SBtnApagar, cons);
         
         SMSJ = new JLabel("En espera....");
         SMSJ.setForeground(Color.black);
@@ -178,12 +180,18 @@ public class Panel extends JFrame {
         setVisible(true);
     }
     
-    public void conectaControlador(  Server c  ){
+    public void conectaControlador(  Control c  ){
  
         BtnDesconectar.addActionListener(c);
         BtnDesconectar.setActionCommand("Desconectar");
  
         BtnConectar.addActionListener(c);
         BtnConectar.setActionCommand("Conectar");
+        
+        SBtnEncender.addActionListener(c);
+        SBtnEncender.setActionCommand("Encender");
+        
+        SBtnApagar.addActionListener(c);
+        SBtnApagar.setActionCommand("Apagar");
     }
 }
