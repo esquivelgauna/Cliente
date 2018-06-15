@@ -22,7 +22,7 @@ public class PanelC extends JFrame {
     protected JButton BtnPedir;
     
     protected JTextField JTMiPuerto;
-    protected JTextField Numeros;
+    protected JTextField Peticion;
     
     protected JLabel SMSJ;
     
@@ -107,19 +107,19 @@ public class PanelC extends JFrame {
         cons.gridheight = 1;
         getContentPane().add(JTMiPuerto, cons);
         
-        JLFIbo = new JLabel("#Fibonacci:");
+        JLFIbo = new JLabel("Sumatoria hasta:");
         cons.gridx = 0;
         cons.gridy = 9;
         cons.gridwidth = 1;
         cons.gridheight = 1;
         getContentPane().add(JLFIbo, cons);
         
-        Numeros = new JTextField("56556");
+        Peticion = new JTextField("88888888");
         cons.gridx = 1;
         cons.gridy = 9;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(Numeros, cons);
+        getContentPane().add(Peticion, cons);
         
         JLabel JLPet = new JLabel("Mi Peticion");
         JLPet.setForeground(Color.green);

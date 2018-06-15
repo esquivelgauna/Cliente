@@ -11,24 +11,17 @@ import javax.swing.JOptionPane;
 public class ControlC implements ActionListener {
 
     String IP;
-    Boolean Peticion = false;
     Boolean Servidor = false;
     int Puetro;
     InfoC Datos;
     Timer timer;
-    ConexionC MiConexion;
-    PuertoC MiServidor;
+    ConexionC Conexion;
+    PuertoC MiPuerto;
     Thread MiHilo;
-    protected PanelC view;
+    protected PanelC Panel;
 
     ControlC(PanelC view) throws IOException {
-        this.view = view;
-    }
-
-    public Boolean Test(String IP, int Puerto) throws IOException {
-        Socket s = null;
-        s = new Socket(IP, Puerto);
-        return true;
+        this.Panel = view;
     }
 
     @Override
@@ -38,18 +31,25 @@ public class ControlC implements ActionListener {
 
         switch (comando) {
             case "Pedir":
-                if (Peticion == false) {
+                if (Servidor == false) {
                     //Mi Puerto
-                    int MiPuerto = Integer.valueOf(this.view.JTMiPuerto.getText());
-                    MiServidor = new PuertoC(MiPuerto);
-                    MiHilo = new Thread(MiServidor);
-                    MiHilo.start();
+                    int Puerto = Integer.valueOf(this.Panel.JTMiPuerto.getText());
+                    /*this.MiPuerto = new PuertoC(Puerto, this.Panel);
+                    MiHilo = new Thread(this.MiPuerto);
+                    MiHilo.start();*/
                     //Conecion al servidor
-                    String ConIP = this.view.JTConexionIP.getText();
-                    int ConPuerto = Integer.valueOf(this.view.JTConexionPuerto.getText());
-                    MiConexion = new ConexionC(ConIP, ConPuerto, this.view, this.view.Numeros.getText(), MiPuerto);
-                    Peticion = true;
-                }else{
+                    String ConIP = this.Panel.JTConexionIP.getText();
+                    int ConPuerto = Integer.valueOf(this.Panel.JTConexionPuerto.getText());
+                    
+                    Conexion = new ConexionC(ConIP, ConPuerto, this.Panel, this.Panel.Peticion.getText(), Puerto);
+                    Conexion.run();
+                    //Servidor= true;
+                    
+                    //Peticion = true;
+                } else {
+                    
+                    
+                    
                     JOptionPane.showMessageDialog(null, "Peticion en proceso, espere...");
                 }
 
@@ -60,9 +60,10 @@ public class ControlC implements ActionListener {
                 break;
         }
     }
+
     public void ST(String Msj, Color Fore, Color Back) {
-        this.view.SMSJ.setText(Msj);
-        this.view.SMSJ.setForeground(Fore);
-        this.view.SMSJ.setBackground(Back);
+        this.Panel.SMSJ.setText(Msj);
+        this.Panel.SMSJ.setForeground(Fore);
+        this.Panel.SMSJ.setBackground(Back);
     }
 }

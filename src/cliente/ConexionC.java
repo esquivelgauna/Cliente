@@ -6,8 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ConexionC {
     
@@ -17,19 +15,19 @@ public class ConexionC {
     int Puerto;
     int MiPuerto;
     String Fiboo;
-    protected PanelC view;
+    protected PanelC Panel;
     HashMap<String, String> Datos = new HashMap<>();
 
     ConexionC(String IP, int Puerto,PanelC view, String Fibo, int p) {
-        this.view = view;
+        this.Panel = view;
         this.IP = IP;
         this.Puerto = Puerto;
         Fiboo = Fibo;
         this.MiPuerto = p;
-        run();
     }
 
     public void run() {
+        int conexion = 1;
         try {
             Socket = new Socket(IP, Puerto);
             Sender = new ObjectOutputStream(Socket.getOutputStream());
@@ -42,10 +40,11 @@ public class ConexionC {
             Datos.put("Tipo", "Cliente" );
             //Datos = new Info();
             Sender.writeObject(Datos);
-
+            
             Texto("Se envio la peticion", Color.green, Color.black);
             System.out.println("Se enviaron datos");
-
+            conexion = 2;
+            Panel.BtnPedir.setEnabled(false);
         } catch (IOException ex) {
             Texto("No se pudo conectar al servidor ", Color.red, Color.black);
             System.out.println("No se conecto");
@@ -60,15 +59,18 @@ public class ConexionC {
                 }
             }
             System.out.println("Conexion cerrada");
-            System.out.println("Esperando....");
-            Texto("Esperando......", Color.orange, Color.black);
+            //System.out.println("Esperando....");
+            //Texto("Esperando......", Color.orange, Color.black);
+        }
+        if(conexion ==2){
+            new Thread(new PuertoC(this.MiPuerto ,this.Panel ) ).start();
         }
     }
 
     public void Texto(String Msj, Color Fore, Color Back) {
-        this.view.SMSJ.setText(Msj);
-        this.view.SMSJ.setForeground(Fore);
-        this.view.SMSJ.setBackground(Back);
+        this.Panel.SMSJ.setText(Msj);
+        this.Panel.SMSJ.setForeground(Fore);
+        this.Panel.SMSJ.setBackground(Back);
     }
 
 }
