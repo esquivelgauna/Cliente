@@ -3,42 +3,43 @@ package cliente;
 import javax.swing.*;
 import java.awt.*;
 
-public class Panel extends JFrame {
+public class PanelC extends JFrame {
     protected JLabel Conexion;
-    protected JLabel CLIP;
-    protected JLabel CLPuerto;
+    protected JLabel JLIP;
+    protected JLabel JLConPuerto;
     
     protected JButton BtnDesconectar;
     protected JButton BtnConectar;
-    protected JTextField IP;
-    protected JTextField Puerto;
+    protected JTextField JTConexionIP;
+    protected JTextField JTConexionPuerto;
     
     protected JLabel MSJ;
     
     protected JLabel Servidor;
-    protected JLabel SLIP;
-    protected JLabel SLPuerto;
+    protected JLabel JLFIbo;
+    protected JLabel JLMiPuerto;
     protected JButton SBtnApagar;
-    protected JButton SBtnEncender;
+    protected JButton BtnPedir;
     
-    protected JTextField STIP;
-    protected JTextField STPuerto;
+    protected JTextField JTMiPuerto;
+    protected JTextField Numeros;
     
     protected JLabel SMSJ;
     
     GridBagConstraints cons = new GridBagConstraints();
 
-    public Panel() {
+    public PanelC() {
         setBounds(100, 100, 400, 400);//Definir las dimensiones de la ventana
-        setTitle("Conexion");    //Barra de título
+        setTitle("Cliente");    //Barra de título
         setDefaultCloseOperation(EXIT_ON_CLOSE);    //Acción al pulsar salir
         getContentPane().setLayout(new GridBagLayout());
-        setForeground(Color.orange);
+        
+        
         Conexion = new JLabel("Conexion:");
         Conexion.setForeground(Color.green);
         Conexion.setBackground(Color.black);
         Conexion.setOpaque(true);
-        Conexion.setHorizontalAlignment(SwingConstants.LEFT);
+        Conexion.setHorizontalAlignment(SwingConstants.CENTER);
         Conexion.setVerticalAlignment(SwingConstants.CENTER);
         cons.gridx = 0;
         cons.gridy = 0;
@@ -52,70 +53,39 @@ public class Panel extends JFrame {
         getContentPane().add(Conexion, cons);
         
         
-        CLIP = new JLabel("IP");
+        JLIP = new JLabel("IP");
         cons.gridx = 0;
         cons.gridy = 1;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(CLIP, cons);
+        getContentPane().add(JLIP, cons);
         
-        IP = new JTextField("127.0.0.1");
+        JTConexionIP = new JTextField("127.0.0.1");
         cons.gridx = 1;
         cons.gridy = 1;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(IP, cons);
+        getContentPane().add(JTConexionIP, cons);
         
-        CLPuerto = new JLabel("Puerto");
+        JLConPuerto = new JLabel("Puerto");
         cons.gridx = 0;
         cons.gridy = 2;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(CLPuerto, cons);
+        getContentPane().add(JLConPuerto, cons);
         
-        Puerto = new JTextField("5432");
+        JTConexionPuerto = new JTextField("5432");
         cons.gridx = 1;
         cons.gridy = 2;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(Puerto, cons);
+        getContentPane().add(JTConexionPuerto, cons);
         
-        
-        
-        BtnConectar = new JButton("Conectar");
-        cons.gridx = 0;
-        cons.gridy = 4;
-        cons.gridwidth = 1;
-        cons.gridheight = 1;
-        getContentPane().add(BtnConectar, cons);
-        
-        
-        BtnDesconectar = new JButton("Desconectar");
-        cons.gridx = 1;
-        cons.gridy = 4;
-        cons.gridwidth = 1;
-        cons.gridheight = 1;
-        getContentPane().add(BtnDesconectar, cons);
-        
-        MSJ = new JLabel("En espera...");
-        MSJ.setForeground(Color.black);
-        //MSJ.setPreferredSize(new Dimension( 50,50 ));
-        MSJ.setOpaque(true);
-        MSJ.setBackground(Color.gray);
-        MSJ.setHorizontalAlignment(SwingConstants.CENTER);
-        MSJ.setVerticalAlignment(SwingConstants.CENTER);
-        cons.gridx = 0;
-        cons.gridy = 5;
-        cons.gridwidth = 2;
-        cons.gridheight = 1;
-        getContentPane().add(MSJ, cons);
-        
-        
-        Servidor = new JLabel("Servidor:");
+        Servidor = new JLabel("Mi Canal:");
         Servidor.setForeground(Color.blue);
         Servidor.setBackground(Color.white);
         Servidor.setOpaque(true);
-        Servidor.setHorizontalAlignment(SwingConstants.LEFT);
+        Servidor.setHorizontalAlignment(SwingConstants.CENTER);
         Servidor.setVerticalAlignment(SwingConstants.CENTER);
         cons.gridx = 0;
         cons.gridy = 6;
@@ -123,49 +93,60 @@ public class Panel extends JFrame {
         cons.gridheight = 1;
         getContentPane().add(Servidor, cons);
         
-        /*SLIP = new JLabel("IP:");
+        JLMiPuerto = new JLabel("Mi Puerto:");
         cons.gridx = 0;
         cons.gridy = 7;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(SLIP, cons);*/
+        getContentPane().add(JLMiPuerto, cons);
         
-        SLPuerto = new JLabel("Puerto:");
-        cons.gridx = 0;
-        cons.gridy = 8;
-        cons.gridwidth = 1;
-        cons.gridheight = 1;
-        getContentPane().add(SLPuerto, cons);
-        
-        /*STIP = new JTextField("127.0.0.1");
+        JTMiPuerto = new JTextField("5431");
         cons.gridx = 1;
         cons.gridy = 7;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(STIP, cons);*/
+        getContentPane().add(JTMiPuerto, cons);
         
-        STPuerto = new JTextField("5430");
-        cons.gridx = 1;
-        cons.gridy = 8;
+        JLFIbo = new JLabel("#Fibonacci:");
+        cons.gridx = 0;
+        cons.gridy = 9;
         cons.gridwidth = 1;
         cons.gridheight = 1;
-        getContentPane().add(STPuerto, cons);
+        getContentPane().add(JLFIbo, cons);
         
-        SBtnEncender = new JButton("Encender");
+        Numeros = new JTextField("56556");
+        cons.gridx = 1;
+        cons.gridy = 9;
+        cons.gridwidth = 1;
+        cons.gridheight = 1;
+        getContentPane().add(Numeros, cons);
+        
+        JLabel JLPet = new JLabel("Mi Peticion");
+        JLPet.setForeground(Color.green);
+        JLPet.setBackground(Color.black);
+        JLPet.setOpaque(true);
+        JLPet.setHorizontalAlignment(SwingConstants.CENTER);
+        JLPet.setVerticalAlignment(SwingConstants.CENTER);
+        cons.gridx = 0;
+        cons.gridy = 8;
+        cons.gridwidth = 2;
+        cons.gridheight = 1;
+        cons.insets = new Insets(5,10,5, 10);
+        cons.anchor = GridBagConstraints.LAST_LINE_END;
+        cons.fill = GridBagConstraints.BOTH ;
+        cons.weighty = 1.0;
+        cons.weightx = 1.0;
+        getContentPane().add(JLPet, cons);
+        
+        
+        BtnPedir = new JButton("Pedir");
         cons.gridx = 0;
         cons.gridy = 10;
-        cons.gridwidth = 1;
+        cons.gridwidth = 2;
         cons.gridheight = 1;
-        getContentPane().add(SBtnEncender, cons);
+        getContentPane().add(BtnPedir, cons);
         
-        SBtnApagar = new JButton("Apagar");
-        cons.gridx = 1;
-        cons.gridy = 10;
-        cons.gridwidth = 1;
-        cons.gridheight = 1;
-        getContentPane().add(SBtnApagar, cons);
-        
-        SMSJ = new JLabel("En espera....");
+        SMSJ = new JLabel("En Espera");
         SMSJ.setForeground(Color.black);
         SMSJ.setBackground(Color.white);
         SMSJ.setOpaque(true);
@@ -180,18 +161,15 @@ public class Panel extends JFrame {
         setVisible(true);
     }
     
-    public void conectaControlador(  Control c  ){
- 
+    public void conectaControlador(  ControlC c  ){
+
+        /*
         BtnDesconectar.addActionListener(c);
         BtnDesconectar.setActionCommand("Desconectar");
- 
         BtnConectar.addActionListener(c);
-        BtnConectar.setActionCommand("Conectar");
+        BtnConectar.setActionCommand("Conectar");*/
         
-        SBtnEncender.addActionListener(c);
-        SBtnEncender.setActionCommand("Encender");
-        
-        SBtnApagar.addActionListener(c);
-        SBtnApagar.setActionCommand("Apagar");
+        BtnPedir.addActionListener(c);
+        BtnPedir.setActionCommand("Pedir");
     }
 }

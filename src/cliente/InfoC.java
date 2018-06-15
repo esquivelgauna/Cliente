@@ -13,7 +13,7 @@ import org.hyperic.sigar.OperatingSystem;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
-public class Info {
+public class InfoC {
     
     public HashMap<String,String>  PC() throws IOException, SigarException {
         HashMap<String,String> Datos = new HashMap<>();
@@ -36,18 +36,10 @@ public class Info {
         CpuInfo info = infos[0];
         OperatingSystem sys = OperatingSystem.getInstance();
 
-        Datos.put("Desc",(String) sys.getDescription());
-        Datos.put("Nombre",(String) sys.getName());
-        Datos.put("CPU",info.getVendor());
-        Datos.put("Model",info.getModel());
-        Datos.put("MHZ",String.valueOf(info.getMhz()));
-        Datos.put("Cores",String.valueOf(info.getTotalCores()));
-        Datos.put("CoresU",String.valueOf(CpuPerc.format(sigar.getCpuPerc().getUser())));
-        Datos.put("RAMT",String.valueOf((memoria.getTotal()) / 1024 / 1000));
-        Datos.put("RAMF",String.valueOf((memoria.getFree()) / 1024 / 1000));
-        Datos.put("RAMU",String.valueOf((memoria.getUsed()) / 1024 / 1000));
+        
         Datos.put("IP",(IPA));
         Datos.put("MAC",Mac());
+        Datos.put("Tipo","Cliente");
         //System.out.println(Datos);
         return Datos;
     }
